@@ -78,8 +78,9 @@ public class PlayerController : MonoBehaviour
     //ends the game
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag ("Scoreable"))
-        {
+        // If the object has a tag of scorable or collectable, it will increase your score. 
+        if (other.gameObject.CompareTag ("Scoreable") || other.gameObject.CompareTag("Trophy"))
+        { 
             GameManager.ChangeScore(5);
         }
     }
