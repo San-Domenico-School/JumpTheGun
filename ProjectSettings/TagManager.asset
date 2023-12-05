@@ -9,6 +9,7 @@ TagManager:
   - Collectable
   - Powerup
   - Trophy
+  - Poison
   layers:
   - Default
   - TransparentFX

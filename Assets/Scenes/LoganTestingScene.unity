@@ -2321,6 +2321,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstaclePrefab: {fileID: 7973739988586491859, guid: c1d8d6a988b054a82b2a16e0254ec6bf,
     type: 3}
+  trophyPrefab: {fileID: 114304, guid: 3daef342e8f3f9548b04424eac7d4d0d, type: 3}
+  poisonPrefab: {fileID: 134104, guid: 71782582b9d2cac4cba5251a3b767d13, type: 3}
 --- !u!1 &1765257304
 GameObject:
   m_ObjectHideFlags: 0
@@ -2451,7 +2453,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2010290743}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
