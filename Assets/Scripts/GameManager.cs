@@ -62,17 +62,22 @@ public class GameManager : MonoBehaviour
         audioSource.Play();
         toggleGroup.SetActive(false);
         startButton.SetActive(false);
+
         if (timedGame == true)
         {
             timeRemainingText.gameObject.SetActive(true);
             InvokeRepeating("TimeCountdown", 1f, 1f);
-            
+
         }
         gameOver = false;
         spawnManager.SetActive(true);
         playerAnimator.SetFloat("Speed_f", 1.0f);
         playerAnimator.SetBool("BeginGame_b", true);
         dirtSplatter.Play();
+        if (timedGame == false)
+        {
+            timeRemainingText.gameObject.SetActive(false);
+        }
     }
 
     private void EndGame()
@@ -84,6 +89,9 @@ public class GameManager : MonoBehaviour
             playerAnimator.SetFloat("Speed_f", 0f);
             audioSource.Stop();
             CancelInvoke();
+            timeRemainingText.gameObject.SetActive(true);
+            timeRemainingText.text = "Game\nOver";
+
         }
     }
 
