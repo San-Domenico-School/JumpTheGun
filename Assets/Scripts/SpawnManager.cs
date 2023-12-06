@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField] private GameObject obstaclePrefab;
+    [SerializeField] private GameObject[] obstaclePrefab;
     private Vector3 spawnPos = new Vector3(25, 0, 0); //instead of new Vector3... you could do Vector3.right (which is 1,0,0) * 25
     private float startDelay = 2;
     private float repeatRate = 2;
@@ -20,11 +20,12 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     private void SpawnObstacle()
     {
-        Instantiate(obstaclePrefab, spawnPos, obstaclePrefab.transform.rotation);
+        int index = (int)(Mathf.RoundToInt(obstaclePrefab.Length));
+        Instantiate(obstaclePrefab[index], spawnPos, obstaclePrefab[index].transform.rotation);
         if (gameOver)
         {
             CancelInvoke();
             GameManager.gameOver = true;
-        } 
+        }
     }
 }
