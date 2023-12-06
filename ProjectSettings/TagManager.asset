@@ -8,6 +8,8 @@ TagManager:
   - Scoreable
   - Collectable
   - Powerup
+  - Trophy
+  - Poison
   layers:
   - Default
   - TransparentFX
