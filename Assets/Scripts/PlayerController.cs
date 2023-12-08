@@ -24,17 +24,18 @@ public class PlayerController : MonoBehaviour
     private AudioSource playerAudio;
     private Rigidbody playerRb;
     private bool isOnGround;
-    
+    private BoxCollider playerCollider;
+    private bool isSliding = false;
 
     // Start is called before the first frame update
     private void Start()
-    { 
+    {
         isOnGround = true;
         Physics.gravity *= gravityModifier;
         playerRb = GetComponent<Rigidbody>();
         playerAnimation = GetComponent<Animator>();
-        playerAudio  = GetComponent<AudioSource>();
-
+        playerAudio = GetComponent<AudioSource>();
+        playerCollider = GetComponent<BoxCollider>();
     }
 
     // If the player is on the ground then this force is applied when the input for jump is pressed
@@ -51,6 +52,41 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnSliding(InputValue input)
+    {
+        if (isOnGround && !GameManager.gameOver && !isSliding)
+        {
+            StartCoroutine("Slide");
+        }
+    }
+
+    private IEnumerator Slide()
+    {
+        isSliding = true;
+        // Store the original collider size and center
+        float originalSizeY = playerCollider.size.y;
+        float originalCenterY = playerCollider.center.y;
+
+        playerAnimation.SetBool("Crouch_b", true);
+        transform.Rotate(Vector3.left * 60);
+        playerAnimation.SetFloat("Speed_f", 0.0f);
+
+        // Adjust collider height and center when crouching
+        playerCollider.size = new Vector3(playerCollider.size.x, originalSizeY * 0.5f, playerCollider.size.z);
+        playerCollider.center = new Vector3(playerCollider.center.x, originalCenterY * 0.5f, playerCollider.center.z);
+
+        yield return new WaitForSeconds(1.0f);
+
+        playerAnimation.SetBool("Crouch_b", false);
+        transform.Rotate(Vector3.right * 60);
+        playerAnimation.SetFloat("Speed_f", 1.0f);
+
+        // Reset collider height and center when standing up
+        playerCollider.size = new Vector3(playerCollider.size.x, originalSizeY, playerCollider.size.z);
+        playerCollider.center = new Vector3(playerCollider.center.x, originalCenterY, playerCollider.center.z);
+        isSliding = false;
+    }
+
     // Detects whether the players rigibody is on the ground and if it is the player can jump
     private void OnCollisionEnter(Collision collision)
     {
@@ -58,7 +94,7 @@ public class PlayerController : MonoBehaviour
         {
             isOnGround = true;
             dirtParticle.Play();
-            
+
         }
 
         //This checks if the gameObject the player collides with has the obstacles tag and if so,
@@ -68,6 +104,7 @@ public class PlayerController : MonoBehaviour
         {
             GameManager.gameOver = true;
             playerAnimation.SetBool("Death_b", true);
+            collision.gameObject.GetComponent<Rigidbody>().useGravity = true;
             explosionParticle.Play();
             dirtParticle.Stop();
             playerAudio.PlayOneShot(crashSound, 20.0f);
@@ -78,7 +115,7 @@ public class PlayerController : MonoBehaviour
     //ends the game
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag ("Scoreable"))
+        if (other.gameObject.CompareTag("Scoreable"))
         {
             GameManager.ChangeScore(5);
         }
