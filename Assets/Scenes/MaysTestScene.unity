@@ -2325,6 +2325,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstaclePrefab: {fileID: 7973739988586491859, guid: c1d8d6a988b054a82b2a16e0254ec6bf,
     type: 3}
+  trophyPrefab: {fileID: 33510211240840567, guid: 46d39569ceb984d30bbbb4bc39674e22,
+    type: 3}
+  poisonPrefab: {fileID: 7609836010937736346, guid: 8d2f10993644943bba809cfb1e1fbf1c,
+    type: 3}
 --- !u!1 &1765257304
 GameObject:
   m_ObjectHideFlags: 0

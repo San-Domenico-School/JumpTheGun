@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 /*********************************************
  * Th goal of the PLayer Controller is to allow
@@ -108,7 +109,15 @@ public class PlayerController : MonoBehaviour
             explosionParticle.Play();
             dirtParticle.Stop();
             playerAudio.PlayOneShot(crashSound, 20.0f);
+            StartCoroutine("RestartScene");
         }
+    }
+
+    private IEnumerator RestartScene()
+    {
+        Debug.Log("Restarting scene...");
+        yield return new WaitForSeconds(3.0f);
+        SceneManager.LoadScene("Starter_Scene");
     }
 
     //This checks if the gameObject the player collides with has the obstacles tag and if so,
