@@ -2,11 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+/*
+ * This script is attached to the Spawn Manager
+ * */
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField] private GameObject obstaclePrefab;
-    private Vector3 spawnPos = new Vector3(25, 0, 0); //instead of new Vector3... you could do Vector3.right (which is 1,0,0) * 25
+    [SerializeField] private GameObject obstaclePrefab, trophyPrefab, poisonPrefab;
+    private Vector3 spawnPos1 = new Vector3(25, 0, 0); //instead of new Vector3... you could do Vector3.right (which is 1,0,0) * 25
+    private Vector3 spawnPos2 = new Vector3(25, 5, 0);
+    private Vector3 spawnPos3 = new Vector3(22, 5, 0);
     private float startDelay = 2;
     private float repeatRate = 2;
     public bool gameOver { get; private set; }
@@ -15,16 +20,41 @@ public class SpawnManager : MonoBehaviour
     private void Start()
     {
         InvokeRepeating("SpawnObstacle", startDelay, repeatRate);
+        InvokeRepeating("SpawnTrophy", startDelay, repeatRate);
+        InvokeRepeating("SpawnPoison", startDelay, repeatRate);
     }
    
     // Update is called once per frame
     private void SpawnObstacle()
     {
-        Instantiate(obstaclePrefab, spawnPos, obstaclePrefab.transform.rotation);
+        Instantiate(obstaclePrefab, spawnPos1, obstaclePrefab.transform.rotation);
         if (gameOver)
         {
             CancelInvoke();
             GameManager.gameOver = true;
         } 
     }
+
+    private void SpawnTrophy()
+    {
+        //Does the same as Spawn obstacle, but for trophies.
+        Instantiate(trophyPrefab, spawnPos2, trophyPrefab.transform.rotation);
+        if (gameOver)
+        {
+            CancelInvoke();
+            GameManager.gameOver = true;
+        }
+    }
+
+    private void SpawnPoison()
+    {
+        //Does the same as Spawn obstacle, but for poisons.
+        Instantiate(poisonPrefab, spawnPos3, poisonPrefab.transform.rotation);
+        if (gameOver)
+        {
+            CancelInvoke();
+            GameManager.gameOver = true;
+        }
+    }
 }
+

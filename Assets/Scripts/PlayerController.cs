@@ -116,8 +116,22 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Scoreable"))
+
         {
             GameManager.ChangeScore(5);
         }
+
+        if (other.gameObject.CompareTag("Trophy"))
+        {
+            GameManager.ChangeScore(10);
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.CompareTag("Poison"))
+        {
+            GameManager.ChangeScore(-20);
+            Destroy(other.gameObject);
+        }
     }
+
 }
