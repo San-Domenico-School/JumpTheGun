@@ -46,7 +46,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 6179e30335fb5420f89b263b414a03a9,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6179e30335fb5420f89b263b414a03a9,
         type: 3}
@@ -56,7 +56,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 6179e30335fb5420f89b263b414a03a9,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6179e30335fb5420f89b263b414a03a9,
         type: 3}
@@ -71,7 +71,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 6179e30335fb5420f89b263b414a03a9,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6179e30335fb5420f89b263b414a03a9,
         type: 3}
@@ -468,6 +468,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: grandma with mini gun Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6179e30335fb5420f89b263b414a03a9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Obstacles
+      objectReference: {fileID: 0}
     - target: {fileID: 1677264337397171965, guid: 6179e30335fb5420f89b263b414a03a9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -631,5 +636,52 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6179e30335fb5420f89b263b414a03a9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1366199976093959241}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6179e30335fb5420f89b263b414a03a9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -7317263312178892659}
   m_SourcePrefab: {fileID: 100100000, guid: 6179e30335fb5420f89b263b414a03a9, type: 3}
+--- !u!1 &3321365995109692320 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6179e30335fb5420f89b263b414a03a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 2510392955238223601}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1366199976093959241
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3321365995109692320}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-7317263312178892659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3321365995109692320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 291b16b619d50439f82af953871baddb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

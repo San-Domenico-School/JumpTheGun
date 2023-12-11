@@ -2319,10 +2319,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 551ac12be8b084101b2e48e3c4ac9847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstaclePrefab: {fileID: 7973739988586491859, guid: c1d8d6a988b054a82b2a16e0254ec6bf,
-    type: 3}
-  trophyPrefab: {fileID: 114304, guid: 3daef342e8f3f9548b04424eac7d4d0d, type: 3}
-  poisonPrefab: {fileID: 134104, guid: 71782582b9d2cac4cba5251a3b767d13, type: 3}
+  obstaclePrefab:
+  - {fileID: 1342913284886441349, guid: e14ed1fa67bbd4f0199b09d0254a9bf3, type: 3}
+  trophyPrefab:
+  - {fileID: 4386530758305563151, guid: 8dfe93224ed5a4058a2c39ed59714dda, type: 3}
+  - {fileID: 33510211240840567, guid: 46d39569ceb984d30bbbb4bc39674e22, type: 3}
+  poisonPrefab:
+  - {fileID: 1457220280098812482, guid: a88a194b18c384dbea67a2864ff774e0, type: 3}
 --- !u!1 &1765257304
 GameObject:
   m_ObjectHideFlags: 0
