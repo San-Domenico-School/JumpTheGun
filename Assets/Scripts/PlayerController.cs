@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour
             explosionParticle.Play();
             dirtParticle.Stop();
             playerAudio.PlayOneShot(crashSound, 20.0f);
-            StartCoroutine("RestartScene");
+            //StartCoroutine("RestartScene");
         }
     }
 
@@ -117,7 +117,9 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Restarting scene...");
         yield return new WaitForSeconds(3.0f);
-        SceneManager.LoadScene("Starter_Scene");
+        SceneManager.LoadScene("MaysTestScene");
+        GameManager.gameOver = false;
+        isOnGround = true;
     }
 
     //This checks if the gameObject the player collides with has the obstacles tag and if so,
