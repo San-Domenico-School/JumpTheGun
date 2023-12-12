@@ -18,7 +18,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float jumpForce, gravityModifier;
+    [SerializeField] private float jumpForce, secondJumpForce, gravityModifier;
     [SerializeField] private ParticleSystem explosionParticle, dirtParticle;
     [SerializeField] private AudioClip jumpSound, crashSound;
     private Animator playerAnimation;
@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     private bool isOnGround;
     private BoxCollider playerCollider;
     private bool isSliding = false;
+    private int jumpsRemaining = 2;
 
     // Start is called before the first frame update
     private void Start()
@@ -43,15 +44,25 @@ public class PlayerController : MonoBehaviour
     // and the player jumps the dirt particles will then stop and the jump sound plays
     private void OnJump(InputValue input)
     {
-        if (isOnGround && !GameManager.gameOver)
+        if (jumpsRemaining > 0 && !GameManager.gameOver)
         {
-            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            float jumpForceToApply = (jumpsRemaining == 2) ? jumpForce : secondJumpForce;
+
+            // Calculate the jump velocity based on the jump force to apply
+            float jumpVelocity = Mathf.Sqrt(2 * jumpForceToApply * Mathf.Abs(Physics.gravity.y));
+
+            // Set the rigidbody's velocity.y to achieve the calculated jump velocity
+            playerRb.velocity = new Vector3(playerRb.velocity.x, jumpVelocity, playerRb.velocity.z);
+
             playerAnimation.SetTrigger("Jump_trig");
             isOnGround = false;
             dirtParticle.Stop();
             playerAudio.PlayOneShot(jumpSound, 10.0f);
+            jumpsRemaining--;
         }
     }
+
+
 
     private void OnSliding(InputValue input)
     {
@@ -95,7 +106,7 @@ public class PlayerController : MonoBehaviour
         {
             isOnGround = true;
             dirtParticle.Play();
-
+            jumpsRemaining = 2; // Reset jumps when landing on the ground
         }
 
         //This checks if the gameObject the player collides with has the obstacles tag and if so,
