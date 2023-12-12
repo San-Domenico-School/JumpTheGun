@@ -9,9 +9,9 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] obstaclePrefab, trophyPrefab, poisonPrefab;
-    private Vector3 spawnPos1 = new Vector3(25, 0, 0); //instead of new Vector3... you could do Vector3.right (which is 1,0,0) * 25
-    private Vector3 spawnPos2 = new Vector3(25, 5, 0);
-    private Vector3 spawnPos3 = new Vector3(22, 5, 0);
+    private Vector3 spawnPos1 = new Vector3(25, 0, -0.26f); //instead of new Vector3... you could do Vector3.right (which is 1,0,0) * 25
+    private Vector3 spawnPos2 = new Vector3(25, 5, -0.26f);
+    private Vector3 spawnPos3 = new Vector3(22, 5, -0.26f);
     private float startDelay = 2;
     private float repeatRate = 2;
     public bool gameOver { get; private set; }
@@ -39,7 +39,7 @@ public class SpawnManager : MonoBehaviour
     private void SpawnTrophy()
     {
         //Does the same as Spawn obstacle, but for trophies.
-        int index = UnityEngine.Random.Range(0, obstaclePrefab.Length);
+        int index = UnityEngine.Random.Range(0, trophyPrefab.Length);
         Instantiate(trophyPrefab[index], spawnPos2, trophyPrefab[index].transform.rotation);
         if (gameOver)
         {
@@ -51,7 +51,7 @@ public class SpawnManager : MonoBehaviour
     private void SpawnPoison()
     {
         //Does the same as Spawn obstacle, but for poisons.
-        int index = UnityEngine.Random.Range(0, obstaclePrefab.Length);
+        int index = UnityEngine.Random.Range(0, poisonPrefab.Length);
         Instantiate(poisonPrefab[index], spawnPos3, poisonPrefab[index].transform.rotation);
         if (gameOver)
         {

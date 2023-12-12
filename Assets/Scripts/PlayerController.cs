@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     private bool isOnGround;
     private BoxCollider playerCollider;
     private bool isSliding = false;
+    private float currentPoints;
 
     // Start is called before the first frame update
     private void Start()
@@ -128,6 +129,7 @@ public class PlayerController : MonoBehaviour
 
         {
             GameManager.ChangeScore(5);
+            Destroy(other.gameObject);
         }
 
         if (other.gameObject.CompareTag("Trophy"))
@@ -143,4 +145,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void GetScore(Collision collision)
+    {
+        Score points = collision.gameObject.GetComponent<Score>();
+        currentPoints = points.points;
+    }
 }
