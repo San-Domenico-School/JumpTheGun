@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8574692371444200544}
   - component: {fileID: 7326525911670296050}
   - component: {fileID: 7122011708875266513}
+  - component: {fileID: -3338278010887981738}
   m_Layer: 0
   m_Name: AppleHolder
   m_TagString: Poison
@@ -67,6 +68,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-3338278010887981738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457220280098812482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f00d79540521049b1ae99c8e232b08c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points: -10
 --- !u!1001 &7858052220086861479
 PrefabInstance:
   m_ObjectHideFlags: 0

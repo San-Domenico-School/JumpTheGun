@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     private bool isOnGround;
     private BoxCollider playerCollider;
     private bool isSliding = false;
-    private float currentPoints;
+    private float currentPoints = 10f;
 
     // Start is called before the first frame update
     private void Start()
@@ -92,6 +92,10 @@ public class PlayerController : MonoBehaviour
     // Detects whether the players rigibody is on the ground and if it is the player can jump
     private void OnCollisionEnter(Collision collision)
     {
+        //makes the currentPoint the amout point to add to the score
+        //help i dont know what im doing - seamus
+     
+
         if (collision.gameObject.name == "Ground" && !GameManager.gameOver)
         {
             isOnGround = true;
@@ -125,29 +129,29 @@ public class PlayerController : MonoBehaviour
     //ends the game
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.CompareTag("Trophy") || other.gameObject.CompareTag("Scoreable") || other.gameObject.CompareTag("Poison"))
+        {
+            Score points = other.gameObject.GetComponent<Score>();
+            currentPoints = points.points;
+            Debug.Log("works");
+        }
         if (other.gameObject.CompareTag("Scoreable"))
 
         {
-            GameManager.ChangeScore(5);
+            GameManager.ChangeScore((int) currentPoints);
             Destroy(other.gameObject);
         }
 
         if (other.gameObject.CompareTag("Trophy"))
         {
-            GameManager.ChangeScore(10);
+            GameManager.ChangeScore((int) currentPoints);
             Destroy(other.gameObject);
         }
 
         if (other.gameObject.CompareTag("Poison"))
         {
-            GameManager.ChangeScore(-20);
+            GameManager.ChangeScore((int) currentPoints);
             Destroy(other.gameObject);
         }
-    }
-
-    private void GetScore(Collision collision)
-    {
-        Score points = collision.gameObject.GetComponent<Score>();
-        currentPoints = points.points;
     }
 }

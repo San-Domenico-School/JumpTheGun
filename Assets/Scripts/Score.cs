@@ -4,6 +4,5 @@ using UnityEngine;
 
 public class Score : MonoBehaviour
 {
-    [SerializeField] public float points = 10;
-    
+    [SerializeField] public float points = 0;
 }
