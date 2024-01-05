@@ -6,8 +6,6 @@ public class MoveLeft : MonoBehaviour
 {
     private float speed = 20;
     private float leftBound = -15;
-    public bool gameOver { get; private set; }
-
 
     // Update is called once per frame
     private void Update()
@@ -17,7 +15,7 @@ public class MoveLeft : MonoBehaviour
             transform.Translate(Vector3.left * Time.deltaTime * speed);
         }
 
-        if (transform.position.x < leftBound && gameObject.CompareTag("Obstacles"))
+        if (transform.position.x < leftBound && gameObject.tag == "Obstacles")
         {
             Destroy(gameObject);
         }
